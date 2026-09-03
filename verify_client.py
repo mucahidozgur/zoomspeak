@@ -153,21 +153,21 @@ assert "Token yok, tam metin." in fmt_fallback.txt
 print("OK   : Token'sız yanıtta doğrudan `text` alanı kullanılıyor")
 
 # Gerçek veri regresyonu: birleştirme, Soniox'un kendi üst seviye metnini
-# birebir yeniden üretmeli (temp/jfk_result.json varsa).
-jfk_path = Path("temp/jfk_result.json")
-if jfk_path.exists():
+# birebir yeniden üretmeli (temp/canli_result.json varsa — canlı API testi üretir).
+canli_path = Path("temp/canli_result.json")
+if canli_path.exists():
     import json as _json
 
     from src.transcription_service import _join_token_texts
 
-    real = _json.loads(jfk_path.read_text(encoding="utf-8"))
+    real = _json.loads(canli_path.read_text(encoding="utf-8"))
     joined = _join_token_texts(real["tokens"])
     assert joined == real["text"], (
         f"Birleştirme Soniox'un kendi metniyle uyuşmuyor:\n{joined!r}\nvs\n{real['text']!r}"
     )
-    print("OK   : Gerçek JFK verisinde birleştirme, üst seviye `text` ile birebir aynı")
+    print("OK   : Gerçek canlı veride birleştirme, üst seviye `text` ile birebir aynı")
 else:
-    print("ATLA : temp/jfk_result.json yok — gerçek veri regresyonu çalıştırılmadı")
+    print("ATLA : temp/canli_result.json yok — gerçek veri regresyonu çalıştırılmadı")
 
 Path("temp/dummy.wav").unlink()
 
