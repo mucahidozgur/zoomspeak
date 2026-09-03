@@ -121,14 +121,14 @@ Konuşmacı 2: Teşekkürler. Gündem maddelerine geçelim mi?
 
 | Durum | Mesaj |
 |---|---|
-| API anahtarı eksik | `SONIOX_API_KEY bulunamadı. Lütfen .env dosyasına API anahtarınızı ekleyin.` |
-| API anahtarı henüz ayarlanmamış | `SONIOX_API_KEY henüz ayarlanmamış. Lütfen .env dosyasındaki değeri gerçek API anahtarınızla değiştirin.` |
-| API anahtarı geçersiz (401) | `API anahtarı geçersiz. Lütfen .env dosyanızdaki SONIOX_API_KEY değerini kontrol edin.` |
-| Bakiye yetersiz (402 / iş hatası) | `Soniox hesabınızın bakiyesi yetersiz veya aylık kullanım limiti aşılmış. Lütfen app.soniox.com adresinden bakiye yükleyin veya otomatik ödemeyi etkinleştirin.` |
+| API anahtarı eksik | `API anahtarı bulunamadı. Lütfen .env dosyasına API anahtarınızı ekleyin.` |
+| API anahtarı henüz ayarlanmamış | `API anahtarı henüz ayarlanmamış. Lütfen .env dosyasındaki değeri gerçek API anahtarınızla değiştirin.` |
+| API anahtarı geçersiz (401) | `API anahtarı geçersiz. Lütfen .env dosyanızdaki API anahtarı değerini kontrol edin.` |
+| Kullanım limiti aşılmış (402 / iş hatası) | `Hizmetin kullanım limiti aşılmış. Lütfen daha sonra tekrar deneyin veya destek ekibiyle iletişime geçin.` |
 | Çok fazla istek (429) | `Çok fazla istek gönderildi. Lütfen bir dakika bekleyip tekrar deneyin.` |
 | Geçersiz dosya (400) | `Yüklenen dosya geçersiz veya desteklenmeyen bir formatta...` |
-| Sunucu hatası (500) | `Soniox sunucusunda bir hata oluştu...` |
-| Bağlantı hatası | `Soniox sunucusuna bağlanılamadı. İnternet bağlantınızı kontrol edin...` |
+| Sunucu hatası (500) | `Sunucuda bir hata oluştu...` |
+| Bağlantı hatası | `Sunucuya bağlanılamadı. İnternet bağlantınızı kontrol edin...` |
 | Zaman aşımı | `Transkripsiyon zaman aşımına uğradı (30 dakika)...` |
 
 ## 📝 Notlar ve Sınırlamalar

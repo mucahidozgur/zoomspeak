@@ -61,7 +61,7 @@ os.environ["SONIOX_API_KEY"] = ""
 expect_error(
     "Anahtar eksik -> yönlendirme mesajı",
     lambda: transcribe_audio("temp/dummy.wav"),
-    "SONIOX_API_KEY bulunamadı",
+    "API anahtarı bulunamadı",
 )
 
 # 4) Placeholder anahtar

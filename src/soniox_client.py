@@ -77,13 +77,13 @@ def get_api_key() -> str:
     api_key = (os.getenv("SONIOX_API_KEY") or "").strip().strip('"').strip("'")
     if not api_key:
         raise TranscriptionError(
-            "SONIOX_API_KEY bulunamadı. Lütfen .env dosyasına API anahtarınızı ekleyin "
+            "API anahtarı bulunamadı. Lütfen .env dosyasına API anahtarınızı ekleyin "
             "(bkz. .env.example).",
             error_type="missing_api_key",
         )
     if api_key.lower() in PLACEHOLDER_API_KEYS:
         raise TranscriptionError(
-            "SONIOX_API_KEY henüz ayarlanmamış. Lütfen .env dosyasındaki değeri gerçek "
+            "API anahtarı henüz ayarlanmamış. Lütfen .env dosyasındaki değeri gerçek "
             "API anahtarınızla değiştirin.",
             error_type="placeholder_api_key",
         )
@@ -103,14 +103,13 @@ def _map_error(
         return f"İstek geçersiz: {message or 'bilinmeyen neden'}"
     if status_code == 401:
         return (
-            "API anahtarı geçersiz. Lütfen .env dosyanızdaki SONIOX_API_KEY değerini "
+            "API anahtarı geçersiz. Lütfen .env dosyanızdaki API anahtarı değerini "
             "kontrol edin."
         )
     if status_code == 402:
         return (
-            "Soniox hesabınızın bakiyesi yetersiz veya aylık kullanım limiti aşılmış. "
-            "Lütfen app.soniox.com adresinden bakiye yükleyin veya otomatik ödemeyi "
-            "etkinleştirin."
+            "Hizmetin kullanım limiti aşılmış. Lütfen daha sonra tekrar deneyin veya "
+            "destek ekibiyle iletişime geçin."
         )
     if status_code == 404:
         return "Transkripsiyon sonucu bulunamadı. Lütfen tekrar deneyin."
@@ -121,7 +120,7 @@ def _map_error(
     if status_code == 429:
         return "Çok fazla istek gönderildi. Lütfen bir dakika bekleyip tekrar deneyin."
     if status_code >= 500:
-        return "Soniox sunucusunda bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+        return "Sunucuda bir hata oluştu. Lütfen daha sonra tekrar deneyin."
     if message:
         return f"İstek geçersiz: {message}"
     return f"Beklenmeyen bir hata oluştu (HTTP {status_code}). Lütfen tekrar deneyin."
@@ -156,18 +155,18 @@ def _request(method: str, path: str, api_key: str, **kwargs) -> requests.Respons
         return requests.request(method, f"{get_base_url()}{path}", headers=headers, **kwargs)
     except requests.ConnectionError as exc:
         raise TranscriptionError(
-            "Soniox sunucusuna bağlanılamadı. İnternet bağlantınızı kontrol edin ve "
+            "Sunucuya bağlanılamadı. İnternet bağlantınızı kontrol edin ve "
             "tekrar deneyin.",
             error_type="connection_error",
         ) from exc
     except requests.Timeout as exc:
         raise TranscriptionError(
-            "Soniox sunucusuna istek zaman aşımına uğradı. Lütfen tekrar deneyin.",
+            "Sunucuya istek zaman aşımına uğradı. Lütfen tekrar deneyin.",
             error_type="timeout",
         ) from exc
     except requests.RequestException as exc:
         raise TranscriptionError(
-            "Soniox API ile iletişim kurulamadı. Lütfen tekrar deneyin.",
+            "Servisle iletişim kurulamadı. Lütfen tekrar deneyin.",
             error_type="request_error",
         ) from exc
 
@@ -224,9 +223,8 @@ def _job_error_message(job: dict) -> str:
     error_message = job.get("error_message") or ""
     if error_type in _BALANCE_ERROR_TYPES or "balance" in error_message.lower():
         return (
-            "Soniox hesabınızın bakiyesi yetersiz veya aylık kullanım limiti aşılmış. "
-            "Lütfen app.soniox.com adresinden bakiye yükleyin veya otomatik ödemeyi "
-            "etkinleştirin."
+            "Hizmetin kullanım limiti aşılmış. Lütfen daha sonra tekrar deneyin veya "
+            "destek ekibiyle iletişime geçin."
         )
     return f"Transkripsiyon başarısız oldu: {error_message or error_type or 'bilinmeyen neden'}"
 

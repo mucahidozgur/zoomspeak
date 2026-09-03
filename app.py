@@ -71,7 +71,7 @@ def _run_transcription(uploaded_file, language: str) -> None:
     temp_path.write_bytes(uploaded_file.getbuffer())
 
     status = st.status(
-        "Dosya Soniox'a yükleniyor ve transkripsiyon başlatılıyor...", expanded=True
+        "Dosya yükleniyor ve transkripsiyon başlatılıyor...", expanded=True
     )
     try:
         def progress(elapsed: float, job_status: str) -> None:
@@ -115,7 +115,7 @@ st.markdown(
 with st.sidebar:
     st.subheader("Ayarlar")
     language_label = st.radio("Konuşma dili", list(LANGUAGES.keys()), index=0)
-    st.caption("Konuşmacılar Soniox tarafından otomatik algılanır.")
+    st.caption("Konuşmacılar gelişmiş yapay zeka ile otomatik olarak algılanır.")
     st.divider()
     st.markdown(
         "**Desteklenen formatlar:** MP4, M4A, MP3, WAV, FLAC\n\n"
