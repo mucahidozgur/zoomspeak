@@ -69,6 +69,22 @@ Tarayıcınızda otomatik olarak **http://localhost:8501** adresi açılır.
 > Zoom kayıtları için:
 > `streamlit run app.py --server.maxUploadSize=2000`
 
+## ☁️ Render'a Yayınlama (Deployment)
+
+Bu depo, Render Blueprint tanımı (`render.yaml`) içerir:
+
+1. [render.com](https://render.com) adresinde **GitHub ile giriş yapın**.
+2. **New → Blueprint** seçin ve `zoomspeak` deposunu bağlayın.
+3. `SONIOX_API_KEY` ortam değişkenine gerçek API anahtarınızı yapıştırın.
+   Değer yalnızca Render'da tutulur; repo'ya asla yazılmaz.
+4. **Apply** ile onaylayın — servis kurulur, ilk deploy otomatik başlar.
+5. Bundan sonra GitHub'a her `git push` otomatik yeniden deploy edilir (auto-deploy).
+
+**Ücretsiz plan notları:** Ayda 750 saat; 15 dakika trafik olmazsa servis uykuya
+geçer, ilk istekte yaklaşık 1 dakikada uyanır. Demo kayıtları kısa tutulmalıdır;
+işlenmesi dakikalar süren çok uzun toplantı kayıtları için ücretli plan veya
+müşterinin kendi sunucusu (VPS) önerilir (bkz. aşağıdaki iş modeli).
+
 ## 📖 Kullanım
 
 1. "Zoom kaydınızı yükleyin" alanına dosyanızı sürükleyin veya tıklayıp seçin.
