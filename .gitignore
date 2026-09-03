@@ -1,0 +1,14 @@
+# Ortam ve gizli dosyalar
+.env
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Çalışma dizinleri (otomatik temizlenir)
+temp/
+output/
+
+# Streamlit
+.streamlit/
